@@ -133,4 +133,17 @@ class Addendum {
 		}
 		return self::$annotations;
 	}
+
+	/**
+	 * @static
+	 * @param string $className
+	 */
+	public static function declareAnnotation($className) {
+		if(self::$annotations === null) {
+			self::getDeclaredAnnotations();
+		}
+		if(is_subclass_of($className, 'Annotation') || $className == 'Annotation') {
+			self::$annotations[] = $className;
+		}
+	}
 }
